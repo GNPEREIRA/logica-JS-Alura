@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulsando</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+
+    <script>
+        var tela = document.querySelector('canvas');
+        var pincel = tela.getContext('2d');
+        var raio = 20;
+        var fatorCrescimento = 0;
+
+        function desenhaRetangulo(cor, x, y, largura, altura)
+        {
+            pincel.fillStyle = cor;
+            pincel.fillRect(x, y, largura, altura);
+        }
+
+        /*
+        $cor: cor da bola 
+        $cX: coordenada X
+        $cY: coordenada Y
+        $raio: Raio da bola
+        $aI: ângulo inicial
+        */
+
+        function desenhaCirculo(raio)
+        {
+            pincel.fillStyle = 'black';
+            pincel.beginPath();
+            pincel.arc(300,200, raio, 0, 2 * Math.PI);
+            pincel.fill();
+        }
+
+        function limpaTela()
+        {
+           pincel.clearRect(0,0,600,400); 
+        }
+
+        function pulsa()
+        {
+            limpaTela();
+            if(raio > 30){  
+                fatorCrescimento = -1;
+            }else if(raio < 21){
+                fatorCrescimento = 1;
+            }
+            raio = raio + fatorCrescimento;
+            desenhaCirculo(raio);
+            
+        }
+
+        desenhaRetangulo('white', 0, 0, 600, 400); 
+        setInterval(pulsa, 20);   
+        
+
+        
+
+
+        
+
+    </script>
+    
+
+</body>
+</html>

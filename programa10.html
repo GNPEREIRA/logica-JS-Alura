@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animando as coisas</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+
+    <script>
+        var tela = document.querySelector('canvas');
+        var pincel = tela.getContext('2d');
+        var coordX = 20;
+
+        function desenhaRetangulo(cor, x, y, largura, altura)
+        {
+            pincel.fillStyle = cor;
+            pincel.fillRect(x, y, largura, altura);
+        }
+
+        /*
+        $cor: cor da bola 
+        $cX: coordenada X
+        $cY: coordenada Y
+        $raio: Raio da bola
+        $aI: ângulo inicial
+        */
+
+        function desenhaCirculo(cX,cY, raio)
+        {
+            pincel.fillStyle = 'black';
+            pincel.beginPath();
+            pincel.arc(cX,cY, raio, 0, 2 * Math.PI);
+            pincel.fill();
+        }
+
+        function limpaTela()
+        {
+           pincel.clearRect(0,0,600,400); 
+        }
+
+        var sentido = 1;
+        function movimenta()
+        {
+            limpaTela();
+            if(coordX > 600){
+                sentido = -1;
+            }else if(coordX < 0){
+                sentido = 1;   
+            }
+            desenhaCirculo(coordX,20, 20);
+            coordX = coordX + sentido;
+        }
+
+        desenhaRetangulo('white', 0, 0, 600, 400); 
+        setInterval(movimenta, 5);   
+        
+
+        
+
+
+        
+
+    </script>
+    
+
+</body>
+</html>

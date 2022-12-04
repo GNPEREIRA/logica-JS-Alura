@@ -1,0 +1,54 @@
+<!--
+    Documentação Canvas API
+    https://developer.mozilla.org/pt-BR/docs/Web/API/Canvas_API
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<body>
+
+ <!--Define a área usada para desenhar-->   
+<canvas width="600" height="400"></canvas>
+
+<script>
+    
+    var tela = document.querySelector('canvas');
+    var pincel =tela.getContext('2d');//define o tipo de tela usada
+
+    //Desenhando retângulos
+    pincel.fillStyle = 'black';//define a cor do pincel
+    pincel.fillRect(0,0,600,400);//coord(x,y), dimensões do 1º retângulo
+
+    pincel.fillStyle = 'SpringGreen';//define a cor do pincel
+    pincel.fillRect(0,0,200,400);//coord(x,y), dimensões do 2º retângulo
+
+
+    pincel.fillStyle = 'red';//define a cor do pincel
+    pincel.fillRect(200,0,200,400);//coord(x,y), dimensões do 3º retângulo
+
+
+    //desenhando triângulo
+    pincel.fillStyle = 'yellow';
+    pincel.beginPath();
+    pincel.moveTo(300,200);//posiciona ponto na coord x,y
+    pincel.lineTo(200, 400);//traçado do 1º lado do triângulo
+    pincel.lineTo(400,400);//traçado do 2º lado
+    pincel.fill();//preenchimento
+
+    //desenhando um círculo
+    pincel.fillStyle = 'white';
+    pincel.beginPath();//reinicia novo caminho
+    pincel.arc(300,338, 60.5, 0, 2 * 3.14);//(x,y), raio, ângulo inicial, ângulo final em rad
+    pincel.fill(); 
+
+</script>
+
+    
+</body>
+</html>

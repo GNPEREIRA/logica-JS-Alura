@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - lógica</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+
+    <script>
+        var tela = document.querySelector('canvas');
+        var pincel = tela.getContext('2d');
+
+        function desenhaRetangulo($cor, $x, $y, $largura, $altura)
+        {
+            pincel.fillStyle = $cor;
+            pincel.fillRect($x, $y, $largura, $altura);
+        }
+
+        /*
+            $cor: preenchimento figura
+            $cA: coordenada A da figura
+            $cB: coordenada B da figura
+            $vA: vértice A do triângulo
+            $vB: vértice B do triângulo
+            $vC: vértice c do triângulo
+        */
+        function desenhaTriangulo($cor, $cA, $cB, $vA, $vB, $vC)
+        {
+            pincel.fillStyle = $cor;
+            pincel.beginPath();
+            pincel.moveTo($cA, $cB);
+            pincel.lineTo($vA, $vB);
+            pincel.lineTo($vB, $vC);
+            pincel.fill();
+        }
+
+        function desenhaCirculo($cor, $cX,$cY, $R, $aI)
+        {
+            pincel.fillStyle = $cor;
+            pincel.beginPath();
+            pincel.arc($cX,$cY, $R, $aI, 2 * 3.14);
+            pincel.fill();
+        }
+
+        /*
+        function exibeAlerta(evento){
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+            pincel.fillStyle = "black";
+            pincel.beginPath();
+            pincel.arc(x, y, 20, 0, 2*3.14);
+            pincel.fill();
+            //alert("coord " + x + '- ' + y);
+            
+        }
+        */
+
+        function desenhaBola(evento)
+        {
+            var x = evento.pageX - tela.offsetLeft;
+            var y = evento.pageY - tela.offsetTop;
+            pincel.fillStyle = 'pink';
+            pincel.beginPath();
+            pincel.arc(x,y,20,0,2*3.14);
+            pincel.fill();
+        }
+
+        desenhaRetangulo('brown', 0, 0, 600, 400);
+        desenhaTriangulo('black', 300, 400, 300, 100, 200, 400);
+        desenhaCirculo('grey', 300,338, 60.5, 0);
+
+        desenhaRetangulo('green',0,0,50,50);
+        //desenha uma borda
+        pincel.fillStroke = "black";
+        pincel.strokeRect(0,0,50,50);
+
+        tela.onclick = desenhaBola;
+
+
+        
+
+    </script>
+    
+
+</body>
+</html>
